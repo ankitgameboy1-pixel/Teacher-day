@@ -27,7 +27,7 @@
     }
 
     body {
-      background: radial-gradient(circle at center, #ece4d7 0%, #cfc5b4 100%);
+      background-color: #dfd8cb;
       font-family: 'Fredoka', sans-serif;
       min-height: 100vh;
       min-height: 100dvh;
@@ -35,35 +35,37 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      padding: 0;
     }
 
-    /* Ratio-Locked Container (Mobile & PC Both Perfect) */
+    /* Base Container */
     .app-container {
       position: relative;
       background-color: var(--bg-cream);
       background-image: 
         linear-gradient(var(--grid-line) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-      background-size: 20px 20px;
+      background-size: 22px 22px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      
-      /* Pure Aspect Ratio Trick: Kabhi nahi pichkega */
+      width: 100vw;
+      height: 100vh;
       height: 100dvh;
-      width: 100%;
-      max-width: calc(100dvh * (9 / 16));
-      box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
     }
 
-    @media (min-width: 540px) {
+    /* Desktop View (Browser Mode): Wide layout with balanced margins */
+    @media (min-width: 850px) {
+      body {
+        padding: 24px;
+        background: radial-gradient(circle at center, #ede6da 0%, #cac0b0 100%);
+      }
       .app-container {
-        height: min(92dvh, 820px);
-        width: auto;
-        aspect-ratio: 9 / 16;
-        border-radius: 34px;
-        border: 7px solid #eae2d3;
+        max-width: 1100px;
+        height: 88vh;
+        max-height: 750px;
+        border-radius: 36px;
+        border: 8px solid #f1ebdE;
       }
     }
 
@@ -76,17 +78,17 @@
 
     .music-btn {
       position: absolute;
-      top: 16px;
-      left: 18px;
+      top: 18px;
+      left: 20px;
       background: rgba(255, 255, 255, 0.9);
       border: 1.5px solid #ded7cb;
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 999px;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: #555;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       cursor: pointer;
       z-index: 50;
       box-shadow: 0 4px 12px rgba(0,0,0,0.06);
@@ -99,9 +101,9 @@
 
     .plane-doodle {
       position: absolute;
-      top: 16px;
-      right: 18px;
-      font-size: 22px;
+      top: 18px;
+      right: 22px;
+      font-size: 26px;
       opacity: 0.45;
       animation: floatPlane 5s ease-in-out infinite alternate;
       z-index: 1;
@@ -110,21 +112,21 @@
 
     @keyframes floatPlane {
       0% { transform: translate(0, 0) rotate(0deg); }
-      100% { transform: translate(-12px, 12px) rotate(-12deg); }
+      100% { transform: translate(-14px, 14px) rotate(-12deg); }
     }
 
     /* Screen Transitions */
     .screen {
       position: absolute;
       inset: 0;
-      padding: 16px 18px 20px;
+      padding: clamp(14px, 3vh, 28px) clamp(16px, 4vw, 40px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       opacity: 0;
       pointer-events: none;
-      transform: translateY(20px) scale(0.96);
+      transform: translateY(22px) scale(0.97);
       transition: opacity 0.45s ease, transform 0.5s cubic-bezier(0.34, 1.45, 0.64, 1);
       z-index: 2;
     }
@@ -135,12 +137,13 @@
       transform: translateY(0) scale(1);
     }
 
+    /* Primary Nav Button */
     .primary-btn {
       background: linear-gradient(135deg, #ff6b8b, #ff4969);
       color: white;
       border: none;
-      padding: 12px 32px;
-      font-size: 1.05rem;
+      padding: 13px 36px;
+      font-size: 1.1rem;
       font-family: 'Fredoka', sans-serif;
       font-weight: 600;
       border-radius: 999px;
@@ -150,7 +153,7 @@
       gap: 8px;
       box-shadow: 0 8px 24px rgba(255, 73, 105, 0.38);
       transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-      margin-bottom: 12px;
+      margin-bottom: clamp(10px, 2vh, 18px);
       z-index: 10;
       animation: gentlePulse 2.4s infinite ease-in-out;
     }
@@ -164,16 +167,16 @@
       transform: scale(0.92) !important;
     }
 
-    /* Action Buttons (Yes & Dodging No) */
+    /* Screen 1 Buttons */
     .btn-group {
       position: relative;
       width: 100%;
-      height: 60px;
+      height: 65px;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 16px;
-      margin-bottom: 24px;
+      margin-bottom: clamp(16px, 3vh, 26px);
       z-index: 30;
     }
 
@@ -181,7 +184,7 @@
       background: linear-gradient(135deg, #ff6b8b, #ff4969);
       color: white;
       border: none;
-      padding: 12px 34px;
+      padding: 13px 38px;
       font-size: 1.05rem;
       font-family: 'Fredoka', sans-serif;
       font-weight: 600;
@@ -200,7 +203,7 @@
       background: #ffffff;
       color: #666;
       border: 1.5px solid #ded7cb;
-      padding: 12px 30px;
+      padding: 13px 34px;
       font-size: 1.05rem;
       font-family: 'Fredoka', sans-serif;
       font-weight: 600;
@@ -212,12 +215,12 @@
       touch-action: manipulation;
     }
 
-    /* Screen 1 Popup Card */
+    /* Screen 1 Popup */
     .card-popup {
       background: rgba(255, 255, 255, 0.96);
-      border-radius: 26px;
-      padding: 24px 18px;
-      width: 100%;
+      border-radius: 28px;
+      padding: clamp(20px, 3.5vh, 32px) clamp(16px, 3vw, 32px);
+      width: min(100%, 460px);
       text-align: center;
       box-shadow: 0 16px 36px rgba(0,0,0,0.07);
       border: 2px solid rgba(255, 255, 255, 0.95);
@@ -233,7 +236,7 @@
     .heart-bounce {
       display: inline-block;
       color: var(--pink);
-      font-size: 1.8rem;
+      font-size: 2.1rem;
       animation: heartBeat 1.3s infinite ease-in-out;
     }
 
@@ -244,16 +247,16 @@
     }
 
     .card-popup h2 {
-      font-size: 1.45rem;
+      font-size: clamp(1.4rem, 2.5vw, 1.85rem);
       font-weight: 700;
       color: #333;
       margin-top: 4px;
     }
 
     .avatar-wrap {
-      margin: 14px auto;
-      width: 105px;
-      height: 105px;
+      margin: 16px auto;
+      width: clamp(90px, 15vh, 125px);
+      height: clamp(90px, 15vh, 125px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -272,18 +275,19 @@
     }
 
     .sub-tagline {
-      font-size: 0.98rem;
+      font-size: 1.05rem;
       font-weight: 600;
       color: var(--pink);
     }
 
+    /* Screen 2 Vintage Note */
     .title-banner {
       text-align: center;
-      margin-top: 8px;
+      margin-top: clamp(6px, 1.5vh, 12px);
     }
 
     .title-banner h1 {
-      font-size: 1.45rem;
+      font-size: clamp(1.45rem, 2.6vw, 1.95rem);
       font-weight: 700;
       color: #2b2b2b;
       line-height: 1.3;
@@ -292,14 +296,14 @@
     .vintage-note {
       background: #fffdf7;
       border: 1.5px dashed #cfbe9a;
-      border-radius: 20px;
-      padding: 26px 18px;
-      width: 100%;
+      border-radius: 24px;
+      padding: clamp(24px, 4vh, 40px) clamp(18px, 3vw, 36px);
+      width: min(100%, 640px);
       text-align: center;
       box-shadow: 0 12px 26px rgba(0,0,0,0.05);
       margin: auto 0;
       font-family: 'Patrick Hand', cursive;
-      font-size: 1.55rem;
+      font-size: clamp(1.45rem, 2.4vw, 1.9rem);
       line-height: 1.5;
       color: #4f473d;
       animation: noteSway 4s ease-in-out infinite alternate;
@@ -310,30 +314,38 @@
       100% { transform: rotate(0.5deg) translateY(-5px); }
     }
 
+    /* Screen 3 Lessons Grid */
     .section-pill {
       background: #fff0f3;
       border: 1px solid #ffd1da;
-      padding: 5px 14px;
+      padding: 6px 18px;
       border-radius: 999px;
       color: #b54a63;
       text-align: center;
       font-family: 'Patrick Hand', cursive;
-      font-size: 1.1rem;
-      margin-top: 4px;
+      font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+      margin-top: 6px;
     }
 
-    /* Lessons Grid */
     .lessons-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: clamp(10px, 1.8vw, 16px);
       width: 100%;
+      max-width: 500px;
       margin: auto 0;
       perspective: 1200px;
     }
 
+    @media (min-width: 850px) {
+      .lessons-grid {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 900px;
+      }
+    }
+
     .lesson-card {
-      height: 140px;
+      height: clamp(135px, 20vh, 175px);
       position: relative;
       cursor: pointer;
       transform-style: preserve-3d;
@@ -351,8 +363,8 @@
       height: 100%;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-      border-radius: 16px;
-      padding: 10px;
+      border-radius: 18px;
+      padding: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -375,51 +387,58 @@
       border: 1.5px solid #ebd9c5;
       transform: rotateY(180deg);
       font-family: 'Patrick Hand', cursive;
-      font-size: 1.15rem;
+      font-size: clamp(1.1rem, 1.4vw, 1.35rem);
       line-height: 1.35;
       color: #3b352f;
     }
 
     .badge-label {
       background: #f3f3f5;
-      padding: 2px 7px;
+      padding: 2px 8px;
       border-radius: 6px;
-      font-size: 0.68rem;
+      font-size: 0.72rem;
       font-weight: 700;
       color: #888;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .card-front .icon {
-      font-size: 1.8rem;
-      margin-bottom: 2px;
+      font-size: clamp(1.8rem, 2.5vw, 2.3rem);
+      margin-bottom: 4px;
     }
 
     .card-front .title {
       font-weight: 700;
       color: #444;
-      font-size: 0.98rem;
+      font-size: 1.05rem;
     }
 
     .hint-text {
       color: #888;
       font-family: 'Patrick Hand', cursive;
-      font-size: 1.15rem;
-      margin-bottom: 4px;
+      font-size: 1.2rem;
+      margin-bottom: 6px;
     }
 
-    /* Polaroid Desk Display */
+    /* Screen 4 Polaroid Desk */
     .polaroid-frame {
       background: #ffffff;
-      padding: 10px 10px 18px;
-      border-radius: 12px;
+      padding: 12px 12px clamp(16px, 2.5vh, 24px);
+      border-radius: 14px;
       box-shadow: 0 16px 36px rgba(0,0,0,0.12);
-      width: 86%;
+      width: min(88%, 340px);
       margin: auto 0;
       transform: rotate(-1.5deg);
       cursor: pointer;
       text-align: center;
       transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @media (min-width: 850px) {
+      .polaroid-frame {
+        width: 340px;
+        padding: 14px 14px 26px;
+      }
     }
 
     .polaroid-frame.switching {
@@ -428,7 +447,7 @@
 
     .polaroid-frame img {
       width: 100%;
-      height: 200px;
+      height: clamp(170px, 26vh, 240px);
       object-fit: cover;
       border-radius: 6px;
       display: block;
@@ -436,30 +455,30 @@
 
     .polaroid-caption {
       font-family: 'Patrick Hand', cursive;
-      font-size: 1.6rem;
+      font-size: clamp(1.5rem, 2.2vw, 1.85rem);
       color: #4b4b4b;
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
     .counter-pill {
       background: #efe9e0;
-      padding: 3px 12px;
+      padding: 4px 14px;
       border-radius: 8px;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       font-weight: 700;
       color: #635f59;
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     /* Screen 5 Ruled Page */
     .ruled-page {
       background: #ffffff;
-      width: 100%;
-      border-radius: 18px;
-      padding: 20px 16px;
+      width: min(100%, 650px);
+      border-radius: 20px;
+      padding: clamp(20px, 3.5vh, 32px) clamp(16px, 3vw, 28px);
       box-shadow: 0 10px 28px rgba(0,0,0,0.06);
       margin: auto 0;
-      height: 330px;
+      height: clamp(300px, 45vh, 400px);
       position: relative;
       display: flex;
       flex-direction: column;
@@ -467,27 +486,27 @@
 
     .punched-holes {
       position: absolute;
-      left: 7px;
-      top: 20px;
-      bottom: 20px;
+      left: 8px;
+      top: 22px;
+      bottom: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
     .hole {
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: #ddd4c5;
     }
 
     .handwritten-content {
       font-family: 'Patrick Hand', cursive;
-      font-size: 1.35rem;
-      line-height: 1.45;
+      font-size: clamp(1.3rem, 1.9vw, 1.6rem);
+      line-height: 1.5;
       color: #383838;
-      padding-left: 14px;
+      padding-left: 20px;
       white-space: pre-line;
       overflow-y: auto;
       height: 100%;
@@ -496,7 +515,7 @@
     .typewriter-cursor {
       display: inline-block;
       width: 2px;
-      height: 1.2rem;
+      height: 1.3rem;
       background: var(--pink);
       margin-left: 2px;
       vertical-align: middle;
@@ -508,26 +527,26 @@
       50% { opacity: 0; }
     }
 
-    /* Screen 6 Blackboard */
+    /* Screen 6 Blackboard Optimized */
     .blackboard-frame {
       background: #4a3424;
-      padding: 10px;
-      border-radius: 16px;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 18px 36px rgba(0,0,0,0.22);
-      width: 100%;
-      margin: auto 0 10px;
+      padding: clamp(10px, 1.8vh, 16px);
+      border-radius: 20px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 20px 42px rgba(0,0,0,0.22);
+      width: min(100%, 680px);
+      margin: auto 0 clamp(8px, 1.8vh, 16px);
       animation: boardGlow 3.5s infinite alternate ease-in-out;
     }
 
     @keyframes boardGlow {
-      0% { box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 18px 36px rgba(0,0,0,0.22); }
-      100% { box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 20px 42px rgba(255, 77, 109, 0.24); }
+      0% { box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 20px 42px rgba(0,0,0,0.22); }
+      100% { box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 22px 46px rgba(255, 77, 109, 0.24); }
     }
 
     .chalkboard {
       background: #274235;
-      border-radius: 10px;
-      padding: 24px 16px;
+      border-radius: 12px;
+      padding: clamp(22px, 3.5vh, 32px) clamp(16px, 3vw, 28px);
       text-align: center;
       color: #f7f7f7;
       font-family: 'Patrick Hand', cursive;
@@ -535,14 +554,14 @@
     }
 
     .chalkboard p {
-      font-size: 1.35rem;
-      line-height: 1.42;
+      font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+      line-height: 1.45;
     }
 
     .author-sign {
       display: block;
-      margin-top: 14px;
-      font-size: 1.5rem;
+      margin-top: clamp(10px, 1.8vh, 18px);
+      font-size: clamp(1.35rem, 2.4vw, 1.8rem);
       font-weight: 700;
       text-align: right;
       color: #ffd166;
@@ -550,22 +569,22 @@
 
     .bottom-tag {
       background: #ffffff;
-      border-radius: 16px;
-      padding: 8px 20px;
+      border-radius: 18px;
+      padding: 8px 26px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.06);
       text-align: center;
-      width: 100%;
-      margin-bottom: 10px;
+      width: min(100%, 360px);
+      margin-bottom: clamp(6px, 1.5vh, 14px);
     }
 
     .bottom-tag .tag-sub {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: #888;
     }
 
     .bottom-tag .tag-name {
       font-family: 'Patrick Hand', cursive;
-      font-size: 1.55rem;
+      font-size: 1.7rem;
       color: var(--pink);
       font-weight: 700;
     }
@@ -586,7 +605,6 @@
     
     <div class="plane-doodle">✈️</div>
 
-    <!-- Screen 1: Welcome -->
     <section class="screen active" id="screen-1">
       <div class="card-popup">
         <div class="heart-bounce">♥</div>
@@ -606,7 +624,6 @@
       </div>
     </section>
 
-    <!-- Screen 2 -->
     <section class="screen" id="screen-2">
       <div class="title-banner">
         <h1>Happy Teacher's Day,<br><span style="color:var(--pink)">Madam Jii</span> ♥</h1>
@@ -618,7 +635,6 @@
       <button class="primary-btn" onclick="goToScreen(3)">Start Lessons ›</button>
     </section>
 
-    <!-- Screen 3: Lessons Grid -->
     <section class="screen" id="screen-3">
       <div class="title-banner">
         <h1>Today's Lesson</h1>
@@ -675,7 +691,6 @@
       <button class="primary-btn" onclick="goToScreen(4)">View Memories ›</button>
     </section>
 
-    <!-- Screen 4: Polaroids -->
     <section class="screen" id="screen-4">
       <div class="title-banner">
         <h1>Lessons We'll Always <span style="color:var(--pink)">Remember</span></h1>
@@ -691,7 +706,6 @@
       <button class="primary-btn" onclick="goToScreen(5)">Final Lesson ›</button>
     </section>
 
-    <!-- Screen 5: Typewriter Letter -->
     <section class="screen" id="screen-5">
       <div class="title-banner">
         <h1>One Last Lesson</h1>
@@ -712,7 +726,6 @@
       <button class="primary-btn" id="end-class-btn" style="opacity:0.25; pointer-events:none;" onclick="goToScreen(6)">End Class ›</button>
     </section>
 
-    <!-- Screen 6: Blackboard with ~ 10th SOE -->
     <section class="screen" id="screen-6">
       <div class="title-banner">
         <h1>Class <span style="color:var(--pink)">Dismissed.</span></h1>
@@ -889,13 +902,14 @@
       initAudio();
       playSFX('dodge');
 
-      const xOffsets = [-75, 75, -95, 95, -60, 60];
-      const yOffsets = [-40, -65, 35, 55, -35];
+      const isMobile = window.innerWidth < 850;
+      const xRange = isMobile ? [-75, 75, -95, 95, -60, 60] : [-150, 150, -220, 220, -110, 110];
+      const yRange = isMobile ? [-40, -65, 35, 55, -35] : [-60, -90, 45, 75, -50];
 
       let newX, newY;
       do {
-        newX = xOffsets[Math.floor(Math.random() * xOffsets.length)];
-        newY = yOffsets[Math.floor(Math.random() * yOffsets.length)];
+        newX = xRange[Math.floor(Math.random() * xRange.length)];
+        newY = yRange[Math.floor(Math.random() * yRange.length)];
       } while (newX === lastX && newY === lastY);
 
       lastX = newX;
@@ -991,7 +1005,7 @@
         this.x = x || Math.random() * canvas.width;
         this.y = y || (isBlast ? canvas.height / 2 : canvas.height + 20);
         this.emoji = emojiSet[Math.floor(Math.random() * emojiSet.length)];
-        this.size = Math.random() * 12 + 16;
+        this.size = Math.random() * 12 + (window.innerWidth < 850 ? 14 : 20);
         this.speedY = isBlast ? (Math.random() - 0.7) * 9 : -(Math.random() * 1.4 + 1.1);
         this.speedX = isBlast ? (Math.random() - 0.5) * 8 : (Math.random() - 0.5) * 1.2;
         this.rotation = Math.random() * 360;
@@ -1021,7 +1035,7 @@
     }
 
     setInterval(() => {
-      if (particles.length < 20) {
+      if (particles.length < 22) {
         particles.push(new Particle());
       }
     }, 500);
@@ -1030,13 +1044,13 @@
       const rect = container.getBoundingClientRect();
       const localX = clientX - rect.left;
       const localY = clientY - rect.top;
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 6; i++) {
         particles.push(new Particle(localX, localY, true));
       }
     }
 
     function blastCelebration() {
-      for (let i = 0; i < 46; i++) {
+      for (let i = 0; i < 50; i++) {
         particles.push(new Particle(canvas.width / 2, canvas.height / 2, true));
       }
     }
