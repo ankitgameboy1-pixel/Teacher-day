@@ -310,7 +310,7 @@
       margin-top: 8px;
     }
 
-    /* Screen 3 Lessons - FIXED WIDTH & WRAP */
+    /* Screen 3 Lessons */
     .lessons-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -602,114 +602,134 @@
     }
 
     /* ========================================================
-       SMART BOARD / DESKTOP WIDE SCREEN FIX
+       SMART BOARD / LARGE SCREEN FULL SCALING (PHOTO, NOTE & BOARD)
        ======================================================== */
     @media (min-width: 800px) {
       .title-banner h1 {
+        font-size: 2.8rem;
+      }
+
+      .primary-btn {
+        padding: 18px 56px;
+        font-size: 1.55rem;
+        margin-bottom: 26px;
+      }
+
+      .btn-yes, .btn-no {
+        padding: 18px 54px;
+        font-size: 1.55rem;
+      }
+
+      .card-popup {
+        width: 650px;
+        padding: 44px 34px;
+        border-radius: 40px;
+      }
+      .card-popup h2 {
         font-size: 2.6rem;
       }
-
-      .section-pill {
-        font-size: 1.55rem;
-        padding: 10px 36px;
-        margin-top: 10px;
+      .avatar-wrap {
+        width: 150px;
+        height: 150px;
+        margin: 20px auto;
+      }
+      .sub-tagline {
+        font-size: 1.6rem;
       }
 
-      /* YAHAN FIX HAI: Full Width container aur 4 broad columns */
+      /* Lesson Cards Fix */
+      .section-pill {
+        font-size: 1.6rem;
+        padding: 10px 36px;
+      }
       .lessons-grid {
         grid-template-columns: repeat(4, 1fr) !important;
         max-width: 1100px !important;
         width: 95% !important;
-        gap: 20px !important;
+        gap: 22px !important;
       }
-
       .lesson-card {
-        height: 220px !important;
+        height: 230px !important;
       }
-
-      .card-face {
-        padding: 20px 16px !important;
-      }
-
       .card-front .icon {
-        font-size: 3.2rem !important;
+        font-size: 3.4rem !important;
       }
-
       .card-front .title {
-        font-size: 1.5rem !important;
+        font-size: 1.6rem !important;
       }
-
       .card-back {
-        font-size: 1.45rem !important;
-        line-height: 1.4 !important;
-        padding: 18px !important;
-      }
-
-      .badge-label {
-        font-size: 0.95rem !important;
-        padding: 4px 12px !important;
-      }
-
-      .hint-text {
         font-size: 1.5rem !important;
-        margin-top: 6px;
+        line-height: 1.4 !important;
+        padding: 20px !important;
+      }
+      .badge-label {
+        font-size: 1rem !important;
       }
 
-      .primary-btn {
-        padding: 16px 52px;
-        font-size: 1.4rem;
-        margin-bottom: 24px;
-      }
-
-      .vintage-note {
-        max-width: 900px;
-        font-size: 2.4rem;
-        padding: 40px 48px;
-      }
-
+      /* 1. PHOTO SCREEN BADI KI GAYI */
       .polaroid-frame {
-        width: 420px;
-        padding: 18px 18px 28px;
+        width: 580px !important;
+        padding: 22px 22px 34px !important;
+        border-radius: 28px !important;
       }
-
       .polaroid-frame img {
-        height: 290px;
+        height: 380px !important;
       }
-
       .polaroid-caption {
-        font-size: 2.3rem;
+        font-size: 2.6rem !important;
+        margin-top: 18px !important;
+      }
+      .counter-pill {
+        font-size: 1.35rem !important;
+        padding: 8px 24px !important;
+      }
+      .hint-text {
+        font-size: 1.6rem !important;
       }
 
+      /* 2. NOTEBOOK / LETTER SCREEN BADI KI GAYI */
       .ruled-page {
-        max-width: 900px;
-        height: 440px;
-        padding: 34px 40px;
+        width: 95% !important;
+        max-width: 1050px !important;
+        height: 480px !important;
+        padding: 40px 48px !important;
+        border-radius: 34px !important;
       }
-
       .handwritten-content {
-        font-size: 2rem;
+        font-size: 2.25rem !important;
+        line-height: 1.65 !important;
+        padding-left: 36px !important;
       }
 
+      /* 3. FINAL BLACKBOARD BADA KIYA GAYA */
       .blackboard-frame {
-        max-width: 960px;
-        padding: 22px;
+        width: 95% !important;
+        max-width: 1050px !important;
+        padding: 26px !important;
+        border-radius: 32px !important;
       }
-
+      .chalkboard {
+        padding: 44px 40px !important;
+        border-radius: 22px !important;
+      }
       .chalkboard p {
-        font-size: 2.2rem;
+        font-size: 2.35rem !important;
+        line-height: 1.6 !important;
       }
-
       .author-sign {
-        font-size: 2.3rem;
+        font-size: 2.5rem !important;
+        margin-top: 22px !important;
       }
-
       .bottom-tag {
-        max-width: 440px;
-        padding: 14px 34px;
+        width: 500px !important;
+        padding: 14px 34px !important;
+        border-radius: 24px !important;
       }
-      
+      .bottom-tag .tag-sub {
+        font-size: 1.25rem !important;
+      }
       .bottom-tag .tag-name {
-        font-size: 2.3rem;
+        font-size: 2.6rem !important;
       }
     }
   </style>
@@ -729,7 +749,6 @@
     
     <div class="plane-doodle">✈️</div>
 
-    <!-- Screen 1: Welcome -->
     <section class="screen active" id="screen-1">
       <div class="card-popup">
         <div class="heart-bounce">♥</div>
@@ -749,7 +768,6 @@
       </div>
     </section>
 
-    <!-- Screen 2 -->
     <section class="screen" id="screen-2">
       <div class="title-banner">
         <h1>Happy Teacher's Day,<br><span style="color:var(--pink)">Madam Jii</span> ♥</h1>
@@ -761,7 +779,6 @@
       <button class="primary-btn" onclick="goToScreen(3)">Start Lessons ›</button>
     </section>
 
-    <!-- Screen 3: Lessons Grid -->
     <section class="screen" id="screen-3">
       <div class="title-banner">
         <h1>Today's Lesson</h1>
@@ -818,7 +835,6 @@
       <button class="primary-btn" onclick="goToScreen(4)">View Memories ›</button>
     </section>
 
-    <!-- Screen 4: Polaroids (Classroom Photos) -->
     <section class="screen" id="screen-4">
       <div class="title-banner">
         <h1>Lessons We'll Always <span style="color:var(--pink)">Remember</span></h1>
@@ -834,7 +850,6 @@
       <button class="primary-btn" onclick="goToScreen(5)">Next Note ›</button>
     </section>
 
-    <!-- Screen 5: Typewriter Letter -->
     <section class="screen" id="screen-5">
       <div class="title-banner">
         <h1>One Last Lesson</h1>
@@ -855,7 +870,6 @@
       <button class="primary-btn" id="watch-video-btn" style="opacity:0.25; pointer-events:none;" onclick="goToScreen(6)">Watch Video 🎬</button>
     </section>
 
-    <!-- Screen 6: Special Classroom Video -->
     <section class="screen" id="screen-6">
       <div class="title-banner">
         <h1>A Special <span style="color:var(--pink)">Moment</span> For You 🎥</h1>
@@ -874,7 +888,6 @@
       <button class="primary-btn" onclick="goToScreen(7)">Final Lesson ›</button>
     </section>
 
-    <!-- Screen 7: Blackboard Finale -->
     <section class="screen" id="screen-7">
       <div class="title-banner">
         <h1>Class <span style="color:var(--pink)">Dismissed.</span></h1>
@@ -1059,14 +1072,26 @@
       }
     }
 
+    // ==========================================
+    // NO BUTTON FIX: KABHI NEECHE NAHI JAYEGA
+    // SIRF UPAR YA SIDES MEIN MOVE HOGA
+    // ==========================================
     let lastX = 0, lastY = 0;
     function dodgeButton(btn) {
       initAudio();
       playSFX('dodge');
 
       const isWide = window.innerWidth > 800;
-      const xRange = isWide ? [-220, 220, -300, 300, -160, 160] : [-75, 75, -95, 95, -60, 60];
-      const yRange = isWide ? [-100, -150, 90, 140, -80] : [-40, -65, 35, 55, -35];
+      
+      // X = Left / Right
+      const xRange = isWide 
+        ? [-260, -180, 180, 260, -320, 320] 
+        : [-120, -75, 75, 120, -95, 95];
+      
+      // Y = Always Negative or Near 0 (Upar ya center hi rahega, kabhi neeche nahi girega)
+      const yRange = isWide 
+        ? [-70, -120, -160, -40, -90] 
+        : [-35, -55, -75, -20, -45];
 
       let newX, newY;
       do {
@@ -1077,7 +1102,7 @@
       lastX = newX;
       lastY = newY;
 
-      const rot = (Math.random() - 0.5) * 24;
+      const rot = (Math.random() - 0.5) * 20;
       btn.style.transform = `translate(${newX}px, ${newY}px) rotate(${rot}deg) scale(0.96)`;
     }
 
