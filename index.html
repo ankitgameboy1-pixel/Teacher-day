@@ -37,7 +37,7 @@
       overflow: hidden;
     }
 
-    /* Base Container */
+    /* Container */
     .app-container {
       position: relative;
       background-color: var(--bg-cream);
@@ -54,7 +54,7 @@
       box-shadow: 0 24px 60px rgba(0,0,0,0.18);
     }
 
-    /* Desktop View (Browser Mode): Wide layout with balanced margins */
+    /* Desktop View */
     @media (min-width: 850px) {
       body {
         padding: 24px;
@@ -115,7 +115,6 @@
       100% { transform: translate(-14px, 14px) rotate(-12deg); }
     }
 
-    /* Screen Transitions */
     .screen {
       position: absolute;
       inset: 0;
@@ -137,7 +136,6 @@
       transform: translateY(0) scale(1);
     }
 
-    /* Primary Nav Button */
     .primary-btn {
       background: linear-gradient(135deg, #ff6b8b, #ff4969);
       color: white;
@@ -167,7 +165,6 @@
       transform: scale(0.92) !important;
     }
 
-    /* Screen 1 Buttons */
     .btn-group {
       position: relative;
       width: 100%;
@@ -215,7 +212,6 @@
       touch-action: manipulation;
     }
 
-    /* Screen 1 Popup */
     .card-popup {
       background: rgba(255, 255, 255, 0.96);
       border-radius: 28px;
@@ -280,7 +276,6 @@
       color: var(--pink);
     }
 
-    /* Screen 2 Vintage Note */
     .title-banner {
       text-align: center;
       margin-top: clamp(6px, 1.5vh, 12px);
@@ -314,7 +309,6 @@
       100% { transform: rotate(0.5deg) translateY(-5px); }
     }
 
-    /* Screen 3 Lessons Grid */
     .section-pill {
       background: #fff0f3;
       border: 1px solid #ffd1da;
@@ -420,7 +414,7 @@
       margin-bottom: 6px;
     }
 
-    /* Screen 4 Polaroid Desk */
+    /* Polaroid Frame */
     .polaroid-frame {
       background: #ffffff;
       padding: 12px 12px clamp(16px, 2.5vh, 24px);
@@ -470,7 +464,7 @@
       margin-top: 6px;
     }
 
-    /* Screen 5 Ruled Page */
+    /* Ruled Letter */
     .ruled-page {
       background: #ffffff;
       width: min(100%, 650px);
@@ -527,7 +521,46 @@
       50% { opacity: 0; }
     }
 
-    /* Screen 6 Blackboard Optimized */
+    /* Video Frame */
+    .video-card-frame {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: clamp(12px, 2vh, 18px);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.1);
+      width: min(100%, 540px);
+      margin: auto 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 3px solid #f1eae0;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      height: clamp(210px, 38vh, 320px);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+      box-shadow: inset 0 0 12px rgba(0,0,0,0.4);
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-caption {
+      font-family: 'Patrick Hand', cursive;
+      font-size: clamp(1.3rem, 2vw, 1.6rem);
+      color: #555;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    /* Blackboard */
     .blackboard-frame {
       background: #4a3424;
       padding: clamp(10px, 1.8vh, 16px);
@@ -697,13 +730,13 @@
       </div>
 
       <div class="polaroid-frame" id="polaroid-box" onclick="nextPhoto()">
-        <img id="polaroid-img" src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600" alt="Memory">
-        <div class="polaroid-caption" id="polaroid-title">Classroom memories.</div>
+        <img id="polaroid-img" src="class1.jpg" onerror="this.src='https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600'" alt="Classroom Memory">
+        <div class="polaroid-caption" id="polaroid-title">Where our journey started... 📚</div>
       </div>
 
-      <div class="counter-pill" id="photo-counter">01 / 04</div>
+      <div class="counter-pill" id="photo-counter">01 / 03</div>
       <div class="hint-text">Tap photo to switch 📸</div>
-      <button class="primary-btn" onclick="goToScreen(5)">Final Lesson ›</button>
+      <button class="primary-btn" onclick="goToScreen(5)">Next Note ›</button>
     </section>
 
     <section class="screen" id="screen-5">
@@ -723,10 +756,28 @@
         </div>
       </div>
 
-      <button class="primary-btn" id="end-class-btn" style="opacity:0.25; pointer-events:none;" onclick="goToScreen(6)">End Class ›</button>
+      <button class="primary-btn" id="watch-video-btn" style="opacity:0.25; pointer-events:none;" onclick="goToScreen(6)">Watch Video 🎬</button>
     </section>
 
     <section class="screen" id="screen-6">
+      <div class="title-banner">
+        <h1>A Special <span style="color:var(--pink)">Moment</span> For You 🎥</h1>
+      </div>
+
+      <div class="video-card-frame">
+        <div class="video-wrapper">
+          <video id="teacher-video" controls playsinline preload="metadata">
+            <source src="class_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="video-caption">"This classroom will forever echo with your guidance!"</div>
+      </div>
+
+      <button class="primary-btn" onclick="goToScreen(7)">Final Lesson ›</button>
+    </section>
+
+    <section class="screen" id="screen-7">
       <div class="title-banner">
         <h1>Class <span style="color:var(--pink)">Dismissed.</span></h1>
       </div>
@@ -845,7 +896,17 @@
     }
 
     const bgm = document.getElementById('bgm-audio');
+    const teacherVideo = document.getElementById('teacher-video');
     let isMusicPlaying = false;
+
+    // Video chalne par background music automatically pause hoga
+    teacherVideo.addEventListener('play', () => {
+      if (!bgm.paused) {
+        bgm.pause();
+        isMusicPlaying = false;
+        updateMusicButton();
+      }
+    });
 
     function startBGM() {
       if (!isMusicPlaying) {
@@ -886,12 +947,16 @@
       startBGM();
       playSFX('click');
 
+      if (stepNumber !== 6 && teacherVideo && !teacherVideo.paused) {
+        teacherVideo.pause();
+      }
+
       document.querySelectorAll('.screen').forEach(scr => scr.classList.remove('active'));
       const target = document.getElementById('screen-' + stepNumber);
       if (target) target.classList.add('active');
 
       if (stepNumber === 5) startTypewriter();
-      if (stepNumber === 6) {
+      if (stepNumber === 7) {
         blastCelebration();
         playSFX('chime');
       }
@@ -932,11 +997,11 @@
       }
     }
 
+    // Classroom Photos Configuration
     const photos = [
-      { src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600", caption: "Classroom memories." },
-      { src: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600", caption: "Learning together." },
-      { src: "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600", caption: "Your golden guidance." },
-      { src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600", caption: "Forever grateful." }
+      { src: "class1.jpg", caption: "Where our journey started... 📚" },
+      { src: "class2.jpg", caption: "Countless smiles & your guidance ✨" },
+      { src: "class3.jpg", caption: "You made this classroom so special ❤️" }
     ];
 
     let currentPhotoIdx = 0;
@@ -954,7 +1019,7 @@
         currentPhotoIdx = (currentPhotoIdx + 1) % photos.length;
         document.getElementById('polaroid-img').src = photos[currentPhotoIdx].src;
         document.getElementById('polaroid-title').innerText = photos[currentPhotoIdx].caption;
-        document.getElementById('photo-counter').innerText = '0' + (currentPhotoIdx + 1) + ' / 04';
+        document.getElementById('photo-counter').innerText = '0' + (currentPhotoIdx + 1) + ' / 03';
         box.classList.remove('switching');
         isSwitching = false;
       }, 240);
@@ -967,7 +1032,7 @@
       if (typed) return;
       typed = true;
       const target = document.getElementById('typed-text');
-      const btn = document.getElementById('end-class-btn');
+      const btn = document.getElementById('watch-video-btn');
       let i = 0;
 
       function step() {
