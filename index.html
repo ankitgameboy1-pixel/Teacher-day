@@ -26,65 +26,51 @@
       user-select: none;
     }
 
-    body {
-      background-color: #dfd8cb;
-      font-family: 'Fredoka', sans-serif;
+    /* Poore Board par edge-to-edge graph paper */
+    html, body {
+      width: 100%;
+      height: 100%;
       min-height: 100vh;
       min-height: 100dvh;
+      background-color: var(--bg-cream);
+      background-image: 
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: clamp(20px, 2.5vw, 30px) clamp(20px, 2.5vw, 30px);
+      font-family: 'Fredoka', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
     }
 
-    /* Container */
     .app-container {
       position: relative;
-      background-color: var(--bg-cream);
-      background-image: 
-        linear-gradient(var(--grid-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-      background-size: 22px 22px;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      width: 100vw;
-      height: 100vh;
-      height: 100dvh;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
-    }
-
-    /* Desktop View */
-    @media (min-width: 850px) {
-      body {
-        padding: 24px;
-        background: radial-gradient(circle at center, #ede6da 0%, #cac0b0 100%);
-      }
-      .app-container {
-        max-width: 1100px;
-        height: 88vh;
-        max-height: 750px;
-        border-radius: 36px;
-        border: 8px solid #f1ebdE;
-      }
     }
 
     #emoji-canvas {
       position: absolute;
       inset: 0;
+      width: 100%;
+      height: 100%;
       pointer-events: none;
       z-index: 20;
     }
 
     .music-btn {
       position: absolute;
-      top: 18px;
-      left: 20px;
-      background: rgba(255, 255, 255, 0.9);
+      top: clamp(14px, 2.5vh, 24px);
+      left: clamp(14px, 2.5vw, 28px);
+      background: rgba(255, 255, 255, 0.92);
       border: 1.5px solid #ded7cb;
-      padding: 6px 14px;
+      padding: 8px 18px;
       border-radius: 999px;
-      font-size: 0.9rem;
+      font-size: clamp(0.85rem, 1.2vw, 1.05rem);
       color: #555;
       display: inline-flex;
       align-items: center;
@@ -101,9 +87,9 @@
 
     .plane-doodle {
       position: absolute;
-      top: 18px;
-      right: 22px;
-      font-size: 26px;
+      top: clamp(14px, 2.5vh, 24px);
+      right: clamp(14px, 2.5vw, 28px);
+      font-size: clamp(24px, 3vw, 36px);
       opacity: 0.45;
       animation: floatPlane 5s ease-in-out infinite alternate;
       z-index: 1;
@@ -118,7 +104,7 @@
     .screen {
       position: absolute;
       inset: 0;
-      padding: clamp(14px, 3vh, 28px) clamp(16px, 4vw, 40px);
+      padding: clamp(14px, 3vh, 32px) clamp(16px, 4vw, 40px);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -140,18 +126,18 @@
       background: linear-gradient(135deg, #ff6b8b, #ff4969);
       color: white;
       border: none;
-      padding: 13px 36px;
-      font-size: 1.1rem;
+      padding: clamp(12px, 1.8vh, 16px) clamp(28px, 4vw, 44px);
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
       font-family: 'Fredoka', sans-serif;
       font-weight: 600;
       border-radius: 999px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       box-shadow: 0 8px 24px rgba(255, 73, 105, 0.38);
       transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-      margin-bottom: clamp(10px, 2vh, 18px);
+      margin-bottom: clamp(10px, 2.5vh, 24px);
       z-index: 10;
       animation: gentlePulse 2.4s infinite ease-in-out;
     }
@@ -168,12 +154,12 @@
     .btn-group {
       position: relative;
       width: 100%;
-      height: 65px;
+      height: 70px;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 16px;
-      margin-bottom: clamp(16px, 3vh, 26px);
+      gap: 20px;
+      margin-bottom: clamp(12px, 2.5vh, 24px);
       z-index: 30;
     }
 
@@ -181,8 +167,8 @@
       background: linear-gradient(135deg, #ff6b8b, #ff4969);
       color: white;
       border: none;
-      padding: 13px 38px;
-      font-size: 1.05rem;
+      padding: clamp(12px, 1.8vh, 15px) clamp(30px, 4vw, 44px);
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
       font-family: 'Fredoka', sans-serif;
       font-weight: 600;
       border-radius: 999px;
@@ -200,8 +186,8 @@
       background: #ffffff;
       color: #666;
       border: 1.5px solid #ded7cb;
-      padding: 13px 34px;
-      font-size: 1.05rem;
+      padding: clamp(12px, 1.8vh, 15px) clamp(26px, 3.5vw, 38px);
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
       font-family: 'Fredoka', sans-serif;
       font-weight: 600;
       border-radius: 999px;
@@ -214,11 +200,11 @@
 
     .card-popup {
       background: rgba(255, 255, 255, 0.96);
-      border-radius: 28px;
-      padding: clamp(20px, 3.5vh, 32px) clamp(16px, 3vw, 32px);
-      width: min(100%, 460px);
+      border-radius: clamp(24px, 3vw, 36px);
+      padding: clamp(22px, 3.5vh, 36px) clamp(20px, 3vw, 40px);
+      width: min(92%, 520px);
       text-align: center;
-      box-shadow: 0 16px 36px rgba(0,0,0,0.07);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.08);
       border: 2px solid rgba(255, 255, 255, 0.95);
       margin: auto 0;
       animation: popBounce 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -232,7 +218,7 @@
     .heart-bounce {
       display: inline-block;
       color: var(--pink);
-      font-size: 2.1rem;
+      font-size: clamp(2rem, 3vw, 2.6rem);
       animation: heartBeat 1.3s infinite ease-in-out;
     }
 
@@ -243,16 +229,16 @@
     }
 
     .card-popup h2 {
-      font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+      font-size: clamp(1.5rem, 2.5vw, 2.1rem);
       font-weight: 700;
       color: #333;
       margin-top: 4px;
     }
 
     .avatar-wrap {
-      margin: 16px auto;
-      width: clamp(90px, 15vh, 125px);
-      height: clamp(90px, 15vh, 125px);
+      margin: clamp(14px, 2vh, 22px) auto;
+      width: clamp(95px, 14vh, 140px);
+      height: clamp(95px, 14vh, 140px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -261,7 +247,7 @@
 
     @keyframes floatAvatar {
       0% { transform: translateY(0); }
-      100% { transform: translateY(-7px); }
+      100% { transform: translateY(-8px); }
     }
 
     .avatar-wrap img {
@@ -271,18 +257,18 @@
     }
 
     .sub-tagline {
-      font-size: 1.05rem;
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
       font-weight: 600;
       color: var(--pink);
     }
 
     .title-banner {
       text-align: center;
-      margin-top: clamp(6px, 1.5vh, 12px);
+      margin-top: clamp(6px, 1.5vh, 14px);
     }
 
     .title-banner h1 {
-      font-size: clamp(1.45rem, 2.6vw, 1.95rem);
+      font-size: clamp(1.5rem, 2.6vw, 2.2rem);
       font-weight: 700;
       color: #2b2b2b;
       line-height: 1.3;
@@ -291,15 +277,15 @@
     .vintage-note {
       background: #fffdf7;
       border: 1.5px dashed #cfbe9a;
-      border-radius: 24px;
-      padding: clamp(24px, 4vh, 40px) clamp(18px, 3vw, 36px);
-      width: min(100%, 640px);
+      border-radius: clamp(20px, 2.5vw, 28px);
+      padding: clamp(24px, 4vh, 44px) clamp(20px, 3.5vw, 44px);
+      width: min(92%, 700px);
       text-align: center;
-      box-shadow: 0 12px 26px rgba(0,0,0,0.05);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.06);
       margin: auto 0;
       font-family: 'Patrick Hand', cursive;
-      font-size: clamp(1.45rem, 2.4vw, 1.9rem);
-      line-height: 1.5;
+      font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+      line-height: 1.55;
       color: #4f473d;
       animation: noteSway 4s ease-in-out infinite alternate;
     }
@@ -312,34 +298,33 @@
     .section-pill {
       background: #fff0f3;
       border: 1px solid #ffd1da;
-      padding: 6px 18px;
+      padding: 6px 20px;
       border-radius: 999px;
       color: #b54a63;
       text-align: center;
       font-family: 'Patrick Hand', cursive;
-      font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+      font-size: clamp(1.05rem, 1.5vw, 1.35rem);
       margin-top: 6px;
     }
 
     .lessons-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: clamp(10px, 1.8vw, 16px);
-      width: 100%;
-      max-width: 500px;
+      gap: clamp(10px, 1.8vw, 18px);
+      width: min(92%, 560px);
       margin: auto 0;
       perspective: 1200px;
     }
 
-    @media (min-width: 850px) {
+    @media (min-width: 800px) {
       .lessons-grid {
         grid-template-columns: repeat(4, 1fr);
-        max-width: 900px;
+        max-width: 950px;
       }
     }
 
     .lesson-card {
-      height: clamp(135px, 20vh, 175px);
+      height: clamp(135px, 20vh, 185px);
       position: relative;
       cursor: pointer;
       transform-style: preserve-3d;
@@ -357,8 +342,8 @@
       height: 100%;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-      border-radius: 18px;
-      padding: 12px;
+      border-radius: 20px;
+      padding: clamp(10px, 1.5vh, 16px);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -373,7 +358,7 @@
     }
 
     .card-front:hover {
-      transform: translateY(-3px);
+      transform: translateY(-4px);
     }
 
     .card-back {
@@ -381,58 +366,50 @@
       border: 1.5px solid #ebd9c5;
       transform: rotateY(180deg);
       font-family: 'Patrick Hand', cursive;
-      font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+      font-size: clamp(1.1rem, 1.4vw, 1.4rem);
       line-height: 1.35;
       color: #3b352f;
     }
 
     .badge-label {
       background: #f3f3f5;
-      padding: 2px 8px;
+      padding: 3px 10px;
       border-radius: 6px;
-      font-size: 0.72rem;
+      font-size: clamp(0.72rem, 0.9vw, 0.85rem);
       font-weight: 700;
       color: #888;
       margin-bottom: 6px;
     }
 
     .card-front .icon {
-      font-size: clamp(1.8rem, 2.5vw, 2.3rem);
+      font-size: clamp(1.9rem, 2.6vw, 2.5rem);
       margin-bottom: 4px;
     }
 
     .card-front .title {
       font-weight: 700;
       color: #444;
-      font-size: 1.05rem;
+      font-size: clamp(1rem, 1.3vw, 1.15rem);
     }
 
     .hint-text {
       color: #888;
       font-family: 'Patrick Hand', cursive;
-      font-size: 1.2rem;
+      font-size: clamp(1.1rem, 1.4vw, 1.3rem);
       margin-bottom: 6px;
     }
 
-    /* Polaroid Frame */
     .polaroid-frame {
       background: #ffffff;
-      padding: 12px 12px clamp(16px, 2.5vh, 24px);
-      border-radius: 14px;
-      box-shadow: 0 16px 36px rgba(0,0,0,0.12);
-      width: min(88%, 340px);
+      padding: 12px 12px clamp(16px, 2.5vh, 26px);
+      border-radius: 16px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+      width: min(90%, 360px);
       margin: auto 0;
       transform: rotate(-1.5deg);
       cursor: pointer;
       text-align: center;
       transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    @media (min-width: 850px) {
-      .polaroid-frame {
-        width: 340px;
-        padding: 14px 14px 26px;
-      }
     }
 
     .polaroid-frame.switching {
@@ -441,15 +418,15 @@
 
     .polaroid-frame img {
       width: 100%;
-      height: clamp(170px, 26vh, 240px);
+      height: clamp(180px, 28vh, 260px);
       object-fit: cover;
-      border-radius: 6px;
+      border-radius: 8px;
       display: block;
     }
 
     .polaroid-caption {
       font-family: 'Patrick Hand', cursive;
-      font-size: clamp(1.5rem, 2.2vw, 1.85rem);
+      font-size: clamp(1.5rem, 2.2vw, 1.95rem);
       color: #4b4b4b;
       margin-top: 10px;
     }
@@ -458,21 +435,20 @@
       background: #efe9e0;
       padding: 4px 14px;
       border-radius: 8px;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 700;
       color: #635f59;
       margin-top: 6px;
     }
 
-    /* Ruled Letter */
     .ruled-page {
       background: #ffffff;
-      width: min(100%, 650px);
-      border-radius: 20px;
-      padding: clamp(20px, 3.5vh, 32px) clamp(16px, 3vw, 28px);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+      width: min(92%, 700px);
+      border-radius: 22px;
+      padding: clamp(20px, 3.5vh, 36px) clamp(18px, 3vw, 32px);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.06);
       margin: auto 0;
-      height: clamp(300px, 45vh, 400px);
+      height: clamp(300px, 46vh, 420px);
       position: relative;
       display: flex;
       flex-direction: column;
@@ -480,27 +456,27 @@
 
     .punched-holes {
       position: absolute;
-      left: 8px;
-      top: 22px;
-      bottom: 22px;
+      left: 10px;
+      top: 24px;
+      bottom: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
     .hole {
-      width: 8px;
-      height: 8px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: #ddd4c5;
     }
 
     .handwritten-content {
       font-family: 'Patrick Hand', cursive;
-      font-size: clamp(1.3rem, 1.9vw, 1.6rem);
-      line-height: 1.5;
+      font-size: clamp(1.35rem, 1.9vw, 1.7rem);
+      line-height: 1.55;
       color: #383838;
-      padding-left: 20px;
+      padding-left: 22px;
       white-space: pre-line;
       overflow-y: auto;
       height: 100%;
@@ -521,13 +497,12 @@
       50% { opacity: 0; }
     }
 
-    /* Video Frame */
     .video-card-frame {
       background: #ffffff;
-      border-radius: 22px;
-      padding: clamp(12px, 2vh, 18px);
-      box-shadow: 0 16px 36px rgba(0,0,0,0.1);
-      width: min(100%, 540px);
+      border-radius: 24px;
+      padding: clamp(14px, 2vh, 20px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.1);
+      width: min(92%, 600px);
       margin: auto 0;
       display: flex;
       flex-direction: column;
@@ -537,12 +512,11 @@
 
     .video-wrapper {
       width: 100%;
-      height: clamp(210px, 38vh, 320px);
-      border-radius: 14px;
+      height: clamp(220px, 40vh, 340px);
+      border-radius: 16px;
       overflow: hidden;
       background: #000;
       position: relative;
-      box-shadow: inset 0 0 12px rgba(0,0,0,0.4);
     }
 
     .video-wrapper video {
@@ -554,32 +528,31 @@
 
     .video-caption {
       font-family: 'Patrick Hand', cursive;
-      font-size: clamp(1.3rem, 2vw, 1.6rem);
+      font-size: clamp(1.3rem, 2vw, 1.65rem);
       color: #555;
       margin-top: 10px;
       text-align: center;
     }
 
-    /* Blackboard */
     .blackboard-frame {
       background: #4a3424;
-      padding: clamp(10px, 1.8vh, 16px);
-      border-radius: 20px;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 20px 42px rgba(0,0,0,0.22);
-      width: min(100%, 680px);
+      padding: clamp(12px, 2vh, 18px);
+      border-radius: 22px;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 22px 48px rgba(0,0,0,0.22);
+      width: min(92%, 720px);
       margin: auto 0 clamp(8px, 1.8vh, 16px);
       animation: boardGlow 3.5s infinite alternate ease-in-out;
     }
 
     @keyframes boardGlow {
-      0% { box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 20px 42px rgba(0,0,0,0.22); }
-      100% { box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 22px 46px rgba(255, 77, 109, 0.24); }
+      0% { box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 22px 48px rgba(0,0,0,0.22); }
+      100% { box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 24px 52px rgba(255, 77, 109, 0.24); }
     }
 
     .chalkboard {
       background: #274235;
-      border-radius: 12px;
-      padding: clamp(22px, 3.5vh, 32px) clamp(16px, 3vw, 28px);
+      border-radius: 14px;
+      padding: clamp(24px, 3.5vh, 36px) clamp(18px, 3vw, 30px);
       text-align: center;
       color: #f7f7f7;
       font-family: 'Patrick Hand', cursive;
@@ -587,14 +560,14 @@
     }
 
     .chalkboard p {
-      font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+      font-size: clamp(1.3rem, 2.2vw, 1.8rem);
       line-height: 1.45;
     }
 
     .author-sign {
       display: block;
-      margin-top: clamp(10px, 1.8vh, 18px);
-      font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+      margin-top: clamp(12px, 2vh, 20px);
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
       font-weight: 700;
       text-align: right;
       color: #ffd166;
@@ -602,22 +575,22 @@
 
     .bottom-tag {
       background: #ffffff;
-      border-radius: 18px;
-      padding: 8px 26px;
+      border-radius: 20px;
+      padding: 10px 28px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.06);
       text-align: center;
-      width: min(100%, 360px);
-      margin-bottom: clamp(6px, 1.5vh, 14px);
+      width: min(92%, 380px);
+      margin-bottom: clamp(8px, 2vh, 16px);
     }
 
     .bottom-tag .tag-sub {
-      font-size: 0.85rem;
+      font-size: clamp(0.85rem, 1vw, 0.95rem);
       color: #888;
     }
 
     .bottom-tag .tag-name {
       font-family: 'Patrick Hand', cursive;
-      font-size: 1.7rem;
+      font-size: clamp(1.6rem, 2.2vw, 1.85rem);
       color: var(--pink);
       font-weight: 700;
     }
@@ -638,6 +611,7 @@
     
     <div class="plane-doodle">✈️</div>
 
+    <!-- Screen 1: Welcome -->
     <section class="screen active" id="screen-1">
       <div class="card-popup">
         <div class="heart-bounce">♥</div>
@@ -657,6 +631,7 @@
       </div>
     </section>
 
+    <!-- Screen 2 -->
     <section class="screen" id="screen-2">
       <div class="title-banner">
         <h1>Happy Teacher's Day,<br><span style="color:var(--pink)">Madam Jii</span> ♥</h1>
@@ -668,6 +643,7 @@
       <button class="primary-btn" onclick="goToScreen(3)">Start Lessons ›</button>
     </section>
 
+    <!-- Screen 3: Lessons Grid -->
     <section class="screen" id="screen-3">
       <div class="title-banner">
         <h1>Today's Lesson</h1>
@@ -724,6 +700,7 @@
       <button class="primary-btn" onclick="goToScreen(4)">View Memories ›</button>
     </section>
 
+    <!-- Screen 4: Polaroids (Classroom Photos) -->
     <section class="screen" id="screen-4">
       <div class="title-banner">
         <h1>Lessons We'll Always <span style="color:var(--pink)">Remember</span></h1>
@@ -739,6 +716,7 @@
       <button class="primary-btn" onclick="goToScreen(5)">Next Note ›</button>
     </section>
 
+    <!-- Screen 5: Typewriter Letter -->
     <section class="screen" id="screen-5">
       <div class="title-banner">
         <h1>One Last Lesson</h1>
@@ -759,6 +737,7 @@
       <button class="primary-btn" id="watch-video-btn" style="opacity:0.25; pointer-events:none;" onclick="goToScreen(6)">Watch Video 🎬</button>
     </section>
 
+    <!-- Screen 6: Special Classroom Video -->
     <section class="screen" id="screen-6">
       <div class="title-banner">
         <h1>A Special <span style="color:var(--pink)">Moment</span> For You 🎥</h1>
@@ -777,6 +756,7 @@
       <button class="primary-btn" onclick="goToScreen(7)">Final Lesson ›</button>
     </section>
 
+    <!-- Screen 7: Blackboard Finale -->
     <section class="screen" id="screen-7">
       <div class="title-banner">
         <h1>Class <span style="color:var(--pink)">Dismissed.</span></h1>
@@ -899,7 +879,6 @@
     const teacherVideo = document.getElementById('teacher-video');
     let isMusicPlaying = false;
 
-    // Video chalne par background music automatically pause hoga
     teacherVideo.addEventListener('play', () => {
       if (!bgm.paused) {
         bgm.pause();
@@ -967,9 +946,9 @@
       initAudio();
       playSFX('dodge');
 
-      const isMobile = window.innerWidth < 850;
-      const xRange = isMobile ? [-75, 75, -95, 95, -60, 60] : [-150, 150, -220, 220, -110, 110];
-      const yRange = isMobile ? [-40, -65, 35, 55, -35] : [-60, -90, 45, 75, -50];
+      const isWide = window.innerWidth > 800;
+      const xRange = isWide ? [-180, 180, -250, 250, -120, 120] : [-75, 75, -95, 95, -60, 60];
+      const yRange = isWide ? [-80, -120, 60, 90, -60] : [-40, -65, 35, 55, -35];
 
       let newX, newY;
       do {
@@ -997,7 +976,6 @@
       }
     }
 
-    // Classroom Photos Configuration
     const photos = [
       { src: "class1.jpg", caption: "Where our journey started... 📚" },
       { src: "class2.jpg", caption: "Countless smiles & your guidance ✨" },
@@ -1059,8 +1037,8 @@
     const emojiSet = ['🌹', '🌸', '💖', '✨', '🌹'];
 
     function resizeCanvas() {
-      canvas.width = container.clientWidth;
-      canvas.height = container.clientHeight;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
@@ -1070,7 +1048,7 @@
         this.x = x || Math.random() * canvas.width;
         this.y = y || (isBlast ? canvas.height / 2 : canvas.height + 20);
         this.emoji = emojiSet[Math.floor(Math.random() * emojiSet.length)];
-        this.size = Math.random() * 12 + (window.innerWidth < 850 ? 14 : 20);
+        this.size = Math.random() * 12 + (window.innerWidth > 800 ? 20 : 16);
         this.speedY = isBlast ? (Math.random() - 0.7) * 9 : -(Math.random() * 1.4 + 1.1);
         this.speedX = isBlast ? (Math.random() - 0.5) * 8 : (Math.random() - 0.5) * 1.2;
         this.rotation = Math.random() * 360;
@@ -1100,22 +1078,19 @@
     }
 
     setInterval(() => {
-      if (particles.length < 22) {
+      if (particles.length < 24) {
         particles.push(new Particle());
       }
-    }, 500);
+    }, 450);
 
     function createMiniBurst(clientX, clientY) {
-      const rect = container.getBoundingClientRect();
-      const localX = clientX - rect.left;
-      const localY = clientY - rect.top;
       for (let i = 0; i < 6; i++) {
-        particles.push(new Particle(localX, localY, true));
+        particles.push(new Particle(clientX, clientY, true));
       }
     }
 
     function blastCelebration() {
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 55; i++) {
         particles.push(new Particle(canvas.width / 2, canvas.height / 2, true));
       }
     }
