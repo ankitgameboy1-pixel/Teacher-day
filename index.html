@@ -61,7 +61,7 @@
       z-index: 20;
     }
 
-    /* Music & Plane */
+    /* Music & Restart Buttons */
     .music-btn {
       position: absolute;
       top: 20px;
@@ -82,6 +82,33 @@
     }
 
     .music-btn:active {
+      transform: scale(0.92);
+    }
+
+    /* Chhota Restart Button (Sirf End Screen par dikhega) */
+    .restart-btn {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 2px solid var(--pink);
+      color: var(--pink);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 600;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      z-index: 55;
+      box-shadow: 0 4px 16px rgba(255, 77, 109, 0.25);
+      transition: transform 0.2s, background 0.2s;
+      animation: popBounce 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .restart-btn:active {
       transform: scale(0.92);
     }
 
@@ -444,7 +471,7 @@
       margin-top: 8px;
     }
 
-    /* Screen 5 Ruled Page (Auto Scrolling Support) */
+    /* Screen 5 Ruled Page */
     .ruled-page {
       background: #ffffff;
       width: min(92%, 620px);
@@ -490,7 +517,6 @@
       scroll-behavior: smooth;
     }
 
-    /* Subtle custom scrollbar */
     .handwritten-content::-webkit-scrollbar {
       width: 5px;
     }
@@ -622,9 +648,7 @@
       font-weight: 700;
     }
 
-    /* ========================================================
-       SMART BOARD / LARGE SCREEN FULL SCALING
-       ======================================================== */
+    /* SMART BOARD & LARGE SCREEN FULL SCALING */
     @media (min-width: 800px) {
       .title-banner h1 {
         font-size: 2.8rem;
@@ -639,6 +663,13 @@
       .btn-yes, .btn-no {
         padding: 18px 54px;
         font-size: 1.55rem;
+      }
+
+      .restart-btn {
+        top: 26px;
+        right: 36px;
+        padding: 12px 26px;
+        font-size: 1.25rem;
       }
 
       .card-popup {
@@ -658,7 +689,6 @@
         font-size: 1.6rem;
       }
 
-      /* Lesson Cards */
       .section-pill {
         font-size: 1.6rem;
         padding: 10px 36px;
@@ -687,7 +717,6 @@
         font-size: 1rem !important;
       }
 
-      /* Photo Screen */
       .polaroid-frame {
         width: 580px !important;
         padding: 22px 22px 34px !important;
@@ -708,7 +737,6 @@
         font-size: 1.6rem !important;
       }
 
-      /* Notebook Letter Screen */
       .ruled-page {
         width: 95% !important;
         max-width: 1050px !important;
@@ -722,7 +750,6 @@
         padding-left: 36px !important;
       }
 
-      /* Blackboard Screen */
       .blackboard-frame {
         width: 95% !important;
         max-width: 1050px !important;
@@ -771,8 +798,12 @@
     <button class="music-btn" onclick="toggleAudio()" id="music-toggle">
       <span id="music-icon">🎵</span> <span id="music-label">Music</span>
     </button>
+
+    <button class="restart-btn" id="restart-btn" onclick="restartExperience()">
+      <span>🔄</span> Restart
+    </button>
     
-    <div class="plane-doodle">✈️</div>
+    <div class="plane-doodle" id="plane-doodle">✈️</div>
 
     <section class="screen active" id="screen-1">
       <div class="card-popup">
@@ -1094,14 +1125,61 @@
       const target = document.getElementById('screen-' + stepNumber);
       if (target) target.classList.add('active');
 
-      if (stepNumber === 5) startTypewriter();
+      const restartBtn = document.getElementById('restart-btn');
+      const plane = document.getElementById('plane-doodle');
+
+      // Sirf aakhiri blackboard screen (Screen 7) par restart button dikhega
       if (stepNumber === 7) {
+        restartBtn.style.display = 'inline-flex';
+        plane.style.display = 'none';
         blastCelebration();
         playSFX('chime');
+      } else {
+        restartBtn.style.display = 'none';
+        plane.style.display = 'block';
       }
+
+      if (stepNumber === 5) startTypewriter();
     }
 
-    // Dodging "No" Button (Screen boundaries se bahar nahi jayega)
+    // Restart Experience Logic
+    function restartExperience() {
+      initAudio();
+      playSFX('click');
+
+      // Reset Cards
+      document.querySelectorAll('.lesson-card').forEach(card => card.classList.remove('flipped'));
+
+      // Reset Photos
+      currentPhotoIdx = 0;
+      document.getElementById('polaroid-img').src = photos[0].src;
+      document.getElementById('polaroid-title').innerText = photos[0].caption;
+      document.getElementById('photo-counter').innerText = '01 / 03';
+
+      // Reset Video
+      if (teacherVideo) {
+        teacherVideo.pause();
+        teacherVideo.currentTime = 0;
+      }
+
+      // Reset Typewriter
+      typed = false;
+      document.getElementById('typed-text').textContent = '';
+      const watchBtn = document.getElementById('watch-video-btn');
+      watchBtn.style.opacity = '0.25';
+      watchBtn.style.pointerEvents = 'none';
+
+      // Reset Runaway No Button
+      const noBtn = document.getElementById('runaway-btn');
+      noBtn.style.transform = 'none';
+      lastX = 0;
+      lastY = 0;
+
+      // Go back to Screen 1
+      goToScreen(1);
+    }
+
+    // Dodging "No" Button
     let lastX = 0, lastY = 0;
     function dodgeButton(btn) {
       initAudio();
@@ -1170,11 +1248,9 @@
       }, 240);
     }
 
-    // Typewriter message
     const letterText = "Dear Madam Jii,\n\nThank you for always having faith in us and helping us grow.\n\nYou didn't just teach lessons from syllabus, you shaped who we are.\n\nWe promise to make you proud wherever we go!\n\nForever your students,\n~ Ankit, Ashmeet, Aditya & Sohit :)";
     let typed = false;
 
-    // AUTO-SCROLLING TYPEWRITER
     function startTypewriter() {
       if (typed) return;
       typed = true;
@@ -1187,8 +1263,6 @@
         if (i < letterText.length) {
           const char = letterText.charAt(i);
           target.textContent += char;
-          
-          // Har nayi line likhte waqt automatically scroll down karega
           scrollBox.scrollTop = scrollBox.scrollHeight;
 
           if (char !== ' ' && char !== '\n') {
@@ -1197,7 +1271,6 @@
           i++;
           setTimeout(step, 35);
         } else {
-          // Finished: ensure bottom is fully visible
           scrollBox.scrollTop = scrollBox.scrollHeight;
           btn.style.opacity = '1';
           btn.style.pointerEvents = 'auto';
