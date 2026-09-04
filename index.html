@@ -566,17 +566,25 @@
     }
 
     .chalkboard p {
-      font-size: 1.6rem;
-      line-height: 1.5;
+      font-size: 1.5rem;
+      line-height: 1.45;
     }
 
     .author-sign {
       display: block;
-      margin-top: 16px;
-      font-size: 1.7rem;
+      margin-top: 14px;
+      font-size: 1.55rem;
       font-weight: 700;
       text-align: right;
       color: #ffd166;
+      line-height: 1.35;
+    }
+
+    .author-sign small {
+      display: block;
+      font-size: 1.2rem;
+      color: #eeddc8;
+      margin-top: 2px;
     }
 
     .bottom-tag {
@@ -602,7 +610,7 @@
     }
 
     /* ========================================================
-       SMART BOARD / LARGE SCREEN FULL SCALING (PHOTO, NOTE & BOARD)
+       SMART BOARD / LARGE SCREEN FULL SCALING
        ======================================================== */
     @media (min-width: 800px) {
       .title-banner h1 {
@@ -666,7 +674,7 @@
         font-size: 1rem !important;
       }
 
-      /* 1. PHOTO SCREEN BADI KI GAYI */
+      /* Photo Screen */
       .polaroid-frame {
         width: 580px !important;
         padding: 22px 22px 34px !important;
@@ -687,7 +695,7 @@
         font-size: 1.6rem !important;
       }
 
-      /* 2. NOTEBOOK / LETTER SCREEN BADI KI GAYI */
+      /* Notebook Letter Screen */
       .ruled-page {
         width: 95% !important;
         max-width: 1050px !important;
@@ -701,7 +709,7 @@
         padding-left: 36px !important;
       }
 
-      /* 3. FINAL BLACKBOARD BADA KIYA GAYA */
+      /* Blackboard Screen */
       .blackboard-frame {
         width: 95% !important;
         max-width: 1050px !important;
@@ -709,16 +717,20 @@
         border-radius: 32px !important;
       }
       .chalkboard {
-        padding: 44px 40px !important;
+        padding: 40px 36px !important;
         border-radius: 22px !important;
       }
       .chalkboard p {
-        font-size: 2.35rem !important;
-        line-height: 1.6 !important;
+        font-size: 2.3rem !important;
+        line-height: 1.55 !important;
       }
       .author-sign {
-        font-size: 2.5rem !important;
-        margin-top: 22px !important;
+        font-size: 2.35rem !important;
+        margin-top: 20px !important;
+        line-height: 1.4 !important;
+      }
+      .author-sign small {
+        font-size: 1.7rem !important;
       }
       .bottom-tag {
         width: 500px !important;
@@ -896,7 +908,11 @@
       <div class="blackboard-frame">
         <div class="chalkboard">
           <p>"I still have so much to learn from you.<br><br>You are truly my greatest inspiration, my guiding light, and the teacher who showed me how to dream big every single day."</p>
-          <span class="author-sign">~ 10th SOE</span>
+          <span class="author-sign">
+            With love & respect,<br>
+            ~ Ankit, Ashmeet, Aditya & Sohit ❤️
+            <small>(10th SOE)</small>
+          </span>
         </div>
       </div>
 
@@ -1072,10 +1088,7 @@
       }
     }
 
-    // ==========================================
-    // NO BUTTON FIX: KABHI NEECHE NAHI JAYEGA
-    // SIRF UPAR YA SIDES MEIN MOVE HOGA
-    // ==========================================
+    // Dodging "No" button control (Hamesha upar ya sides me dodge karega)
     let lastX = 0, lastY = 0;
     function dodgeButton(btn) {
       initAudio();
@@ -1083,12 +1096,10 @@
 
       const isWide = window.innerWidth > 800;
       
-      // X = Left / Right
       const xRange = isWide 
         ? [-260, -180, 180, 260, -320, 320] 
         : [-120, -75, 75, 120, -95, 95];
       
-      // Y = Always Negative or Near 0 (Upar ya center hi rahega, kabhi neeche nahi girega)
       const yRange = isWide 
         ? [-70, -120, -160, -40, -90] 
         : [-35, -55, -75, -20, -45];
@@ -1146,7 +1157,8 @@
       }, 240);
     }
 
-    const letterText = "Dear Madam Jii,\n\nThank you for always having faith in us and helping us grow.\n\nYou didn't just teach lessons from syllabus, you shaped who we are.\n\nWe promise to make you proud wherever we go!\n\nForever your students :)";
+    // Typewriter message me charo doston ka signature
+    const letterText = "Dear Madam Jii,\n\nThank you for always having faith in us and helping us grow.\n\nYou didn't just teach lessons from syllabus, you shaped who we are.\n\nWe promise to make you proud wherever we go!\n\nForever your students,\n~ Ankit, Ashmeet, Aditya & Sohit :)";
     let typed = false;
 
     function startTypewriter() {
