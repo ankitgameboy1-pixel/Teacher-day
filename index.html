@@ -444,7 +444,7 @@
       margin-top: 8px;
     }
 
-    /* Screen 5 Ruled Page */
+    /* Screen 5 Ruled Page (Auto Scrolling Support) */
     .ruled-page {
       background: #ffffff;
       width: min(92%, 620px);
@@ -456,6 +456,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
     }
 
     .punched-holes {
@@ -466,6 +467,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      z-index: 5;
     }
 
     .hole {
@@ -481,9 +483,20 @@
       line-height: 1.5;
       color: #383838;
       padding-left: 24px;
+      padding-right: 8px;
       white-space: pre-line;
       overflow-y: auto;
       height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    /* Subtle custom scrollbar */
+    .handwritten-content::-webkit-scrollbar {
+      width: 5px;
+    }
+    .handwritten-content::-webkit-scrollbar-thumb {
+      background: #e0d5c1;
+      border-radius: 10px;
     }
 
     .typewriter-cursor {
@@ -645,7 +658,7 @@
         font-size: 1.6rem;
       }
 
-      /* Lesson Cards Fix */
+      /* Lesson Cards */
       .section-pill {
         font-size: 1.6rem;
         padding: 10px 36px;
@@ -874,7 +887,7 @@
           <div class="hole"></div><div class="hole"></div><div class="hole"></div>
           <div class="hole"></div><div class="hole"></div>
         </div>
-        <div class="handwritten-content">
+        <div class="handwritten-content" id="letter-scroll-box">
           <span id="typed-text"></span><span class="typewriter-cursor"></span>
         </div>
       </div>
@@ -1088,7 +1101,7 @@
       }
     }
 
-    // Dodging "No" button control (Hamesha upar ya sides me dodge karega)
+    // Dodging "No" Button (Screen boundaries se bahar nahi jayega)
     let lastX = 0, lastY = 0;
     function dodgeButton(btn) {
       initAudio();
@@ -1157,14 +1170,16 @@
       }, 240);
     }
 
-    // Typewriter message me charo doston ka signature
+    // Typewriter message
     const letterText = "Dear Madam Jii,\n\nThank you for always having faith in us and helping us grow.\n\nYou didn't just teach lessons from syllabus, you shaped who we are.\n\nWe promise to make you proud wherever we go!\n\nForever your students,\n~ Ankit, Ashmeet, Aditya & Sohit :)";
     let typed = false;
 
+    // AUTO-SCROLLING TYPEWRITER
     function startTypewriter() {
       if (typed) return;
       typed = true;
       const target = document.getElementById('typed-text');
+      const scrollBox = document.getElementById('letter-scroll-box');
       const btn = document.getElementById('watch-video-btn');
       let i = 0;
 
@@ -1172,12 +1187,18 @@
         if (i < letterText.length) {
           const char = letterText.charAt(i);
           target.textContent += char;
+          
+          // Har nayi line likhte waqt automatically scroll down karega
+          scrollBox.scrollTop = scrollBox.scrollHeight;
+
           if (char !== ' ' && char !== '\n') {
             playSFX('type');
           }
           i++;
           setTimeout(step, 35);
         } else {
+          // Finished: ensure bottom is fully visible
+          scrollBox.scrollTop = scrollBox.scrollHeight;
           btn.style.opacity = '1';
           btn.style.pointerEvents = 'auto';
         }
